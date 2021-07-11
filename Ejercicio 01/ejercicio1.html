@@ -13,14 +13,24 @@
             height: 50vh;
             padding: 10px;
         }
+
+        main>h2{
+            color: white;
+        }
+
+
     </style>
 </head>
 
 <body>
     <h2>
-        Adaptar esta página web para que permita cambiar el color de fondo del contenedor main. Los colores disponibles serán: rojo, verde, azul y negro y se seleccionarán desde un array. Se dispondrá de dos botones para avanzar y retroceder respectivamente la selección del color. En caso de llegar al final se comenzará desde el principio y viceversa. No utilizar id ni clases para referenciar los botones.
+        Adaptar esta página web para que permita cambiar el color de fondo del contenedor main. Los colores disponibles serán:
+         rojo, verde, azul y negro y se seleccionarán desde un array. Se dispondrá de dos botones para avanzar y retroceder
+          respectivamente la selección del color. En caso de llegar al final se comenzará desde el principio y viceversa. 
+          No utilizar id ni clases para referenciar los botones.
         El color seleccionado se indicará por debajo de los botones en un elemento h2 con texto en blanco (NO se deberá cambiar el color de este mismo texto).
-        Utilizar contructores de variables de ES6 y arrow function y registro de eventos con addEventListener. Permitir incorporar más colores al array, sin hacer modificaciones al código.
+        Utilizar contructores de variables de ES6 y arrow function y registro de eventos con addEventListener. 
+        Permitir incorporar más colores al array, sin hacer modificaciones al código.
     </h2>
     <hr>
 
@@ -32,6 +42,36 @@
     
     <script>
 
+        let colores = ["red", "green", "blue", "black"]
+        let indice = null
+
+        let changeColor = (number) => {
+
+            if(indice == null || (indice + number) == colores.length ){
+                indice = 0
+            }else if((indice+number)< 0){
+                indice = colores.length-1
+            }else{
+                indice += number
+            }
+            
+            let main = document.querySelector('main')
+            main.style.backgroundColor = colores[indice]
+
+            let title = document.querySelectorAll('h2')[1]
+            title.innerText = `The color is ${colores[indice]}`
+            
+        }
+
+        let btn = document.querySelectorAll('button')
+
+        btn[0].addEventListener('click', function() {
+            changeColor(-1)
+        })
+        btn[1].addEventListener('click', function() {
+            changeColor(1)
+        })
+       
     </script>
 
 </body>
