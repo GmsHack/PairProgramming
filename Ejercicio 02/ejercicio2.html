@@ -40,6 +40,62 @@
     </main>
     
     <script>
+        let div = document.querySelectorAll('div')
+
+        let oneCircle = (circulo) => {
+            let selectColor = document.querySelector('select').value
+            circulo.style.backgroundColor = selectColor
+        }
+
+        let reset = () => {
+            div[0].style.backgroundColor = 'white'
+            div[1].style.backgroundColor = 'white'
+            div[2].style.backgroundColor = 'white'
+        } 
+
+        let changeColorBody = () => {
+            let body = document.querySelector('body')
+            if(outerWidth < 500){
+                body.style.backgroundColor = '#eee'
+            }else {
+                body.style.backgroundColor = '#fff'
+            }
+        }
+
+        div[0].addEventListener('click', function(e){
+            if(!document.querySelector('input').checked){
+                e.stopPropagation()
+            }
+            oneCircle(div[0])
+        },false)
+
+        div[1].addEventListener('click', function(e){
+            if(!document.querySelector('input').checked){
+                e.stopPropagation()
+            }
+            oneCircle(div[1])
+        }, false) 
+
+        div[2].addEventListener('click', function(e){
+            if(!document.querySelector('input').checked){
+                e.stopPropagation()
+            }
+            oneCircle(div[2])
+        }, false) 
+
+        let btn = document.querySelector('button')
+        btn.addEventListener('click', function(){
+            reset()
+        })
+       
+        window.addEventListener('resize', function(){
+            changeColorBody()
+        })
+
+        window.addEventListener('load', function(){
+            changeColorBody()
+        })
+        
     </script>
 
 </body>
